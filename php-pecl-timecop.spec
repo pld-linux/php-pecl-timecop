@@ -17,6 +17,9 @@ URL:		https://pecl.php.net/package/timecop/
 BuildRequires:	%{php_name}-cli
 BuildRequires:	%{php_name}-devel
 BuildRequires:	rpmbuild(macros) >= 1.666
+%if %{with tests}
+BuildRequires:	%{php_name}-pcre
+%endif
 %{?requires_php_extension}
 Provides:	php(%{modname}) = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
