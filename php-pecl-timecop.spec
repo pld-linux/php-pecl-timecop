@@ -32,6 +32,16 @@ capabilities, inspired by ruby timecop gem.
 %setup -qc
 mv %{modname}-%{version}/* .
 
+cat <<'EOF' > run-tests.sh
+#!/bin/sh
+export NO_INTERACTION=1 REPORT_EXIT_STATUS=1 MALLOC_CHECK_=2
+exec %{__make} test \
+	PHP_EXECUTABLE=%{__php} \
+	PHP_TEST_SHARED_SYSTEM_EXTENSIONS="" \
+	RUN_TESTS_SETTINGS="-q $*"
+EOF
+chmod +x run-tests.sh
+
 %build
 # Sanity check, really often broken
 extver=$(sed -n '/#define PHP_TIMECOP_VERSION/{s/.* "//;s/".*$//;p}' php_timecop.h)
@@ -54,10 +64,7 @@ phpize
 grep %{modname} modules.log
 
 %if %{with tests}
-export NO_INTERACTION=1 REPORT_EXIT_STATUS=1 MALLOC_CHECK_=2
-%{__make} test \
-	PHP_EXECUTABLE=%{__php} \
-	PHP_TEST_SHARED_SYSTEM_EXTENSIONS=""
+./run-tests.sh
 %endif
 
 %install
