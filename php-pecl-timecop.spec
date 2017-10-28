@@ -46,7 +46,6 @@ phpize
 # simple module load test
 %{__php} -n -q \
 	-d extension_dir=modules \
-	-d extension=%{php_extensiondir}/spl.so \
 	-d extension=%{modname}.so \
 	-m > modules.log
 grep %{modname} modules.log
