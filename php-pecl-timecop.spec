@@ -1,4 +1,6 @@
-#
+# TODO
+# - segfault on php 7.2: https://github.com/hnw/php-timecop/issues/29
+
 # Conditional build:
 %bcond_without	tests		# build without tests
 
