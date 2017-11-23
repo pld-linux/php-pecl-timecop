@@ -1,6 +1,4 @@
-# TODO
-# - segfault on php 7.2: https://github.com/hnw/php-timecop/issues/29
-
+#
 # Conditional build:
 %bcond_without	tests		# build without tests
 
@@ -8,12 +6,12 @@
 %define		modname	timecop
 Summary:	Time travel and freezing extension
 Name:		%{php_name}-pecl-%{modname}
-Version:	1.2.8
+Version:	1.2.10
 Release:	1
 License:	MIT
 Group:		Development/Languages
 Source0:	https://pecl.php.net/get/%{modname}-%{version}.tgz
-# Source0-md5:	35a5026fb16645b29b4e8ad88a0f558d
+# Source0-md5:	a3666485a27f042225040e0ac3ad6dd1
 Source1:	%{modname}.ini
 URL:		https://pecl.php.net/package/timecop/
 BuildRequires:	%{php_name}-cli
